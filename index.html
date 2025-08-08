@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shubham Alte | M.Sc. Mathematics & Statistics | IIT Indore</title>
-    <meta name="description" content="Official portfolio and resume for Shubham Alte, an M.Sc. Mathematics student at IIT Indore with expertise in Statistics and Programming.">
-    <meta name="keywords" content="Shubham Alte, IIT Indore, Mathematics, M.Sc., Statistics, Regression Analysis, Programming, Resume, Portfolio">
+    <title>Shubham Alte | Ph.D. Scholar in Mathematics & Information Theory</title>
+    <meta name="description" content="Official profile for Shubham Alte, a Ph.D. research scholar at IIT Indore specializing in Information Theory, entropy, and image quality assessment.">
+    <meta name="keywords" content="Shubham Alte, IIT Indore, Ph.D., Mathematics, Information Theory, Statistics, Cryptography, Entropy, LaTeX, TA, Research Scholar, Algorithms">
     <meta name="author" content="Shubham Babasaheb Alte">
-    <meta property="og:title" content="Shubham Alte | M.Sc. Mathematics & Statistics | IIT Indore">
-    <meta property="og:description" content="Official portfolio and resume for Shubham Alte, an M.Sc. Mathematics student at IIT Indore with expertise in Statistics and Programming.">
+    <meta property="og:title" content="Shubham Alte | Ph.D. Scholar in Mathematics & Information Theory">
+    <meta property="og:description" content="Official profile for Shubham Alte, a Ph.D. research scholar at IIT Indore specializing in Information Theory, entropy, and image quality assessment.">
     <meta property="og:url" content="https://[your-website-url]">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Cool Slate -->
-    <!-- Application Structure Plan: The application is structured as a single-page portfolio with a fixed navigation bar for easy access to key sections: Education, Projects, Skills, and Experience. This structure was chosen because it's intuitive and familiar for a resume, allowing recruiters to quickly find the information they need. The flow starts with a summary, moves to a visual representation of academic performance, then allows exploration of projects and skills, and concludes with chronological experience. Key interactions include a dynamic chart for academic scores and clickable cards for project details, making the resume more engaging than a static document. -->
+    <!-- Application Structure Plan: The application is structured as a comprehensive single-page profile with a sticky navigation bar. The information is organized into thematic sections: About & Education, Experience & Leadership, Research & Creative Work, and Skills & Interests. This structure was chosen to logically group the new, diverse data, moving from a general overview to specific projects and abilities. It provides a clear, non-linear exploration path, allowing users to jump directly to the most relevant information without being constrained by a chronological layout. Key interactions include toggleable detail views for complex projects and a clean list-based presentation for roles. -->
     <!-- Visualization & Content Choices: 
-        1. Education Data -> Goal: Compare -> Viz: Bar Chart -> Interaction: Hover for details -> Justification: A bar chart provides a quick, visual comparison of academic achievements, which is more impactful than a simple table. -> Library: Chart.js (Canvas).
-        2. Projects Data -> Goal: Organize & Detail on Demand -> Viz: Card Grid -> Interaction: Click to expand/reveal details -> Justification: This keeps the initial view uncluttered while allowing users to dive into specific projects, improving usability. -> Library: Vanilla JS & HTML/CSS.
-        3. Skills & Courses -> Goal: Inform -> Viz: Styled Tags/Badges -> Interaction: None -> Justification: Tags are a modern, scannable, and visually clean way to present a list of skills. -> Library: HTML/Tailwind CSS.
-        4. Experience/Responsibilities -> Goal: Show Chronological Progression -> Viz: Vertical Timeline -> Interaction: None -> Justification: A timeline is the most effective and standard way to display work history and positions of responsibility. -> Library: HTML/Tailwind CSS.
+        1. Personal/Education Info -> Goal: Inform -> Viz: Descriptive Text Block -> Interaction: None -> Justification: The new data is rich in descriptive detail and a text-based presentation is the most effective way to convey this qualitative information concisely, replacing the previous chart which is no longer relevant. -> Library: HTML/CSS.
+        2. Research/Projects & Creative Work -> Goal: Organize & Detail on Demand -> Viz: Card Grid -> Interaction: Click to expand/collapse descriptions -> Justification: This keeps the page clean and allows users to explore specific projects that interest them without overwhelming the initial view. -> Library: Vanilla JS & HTML/CSS.
+        3. Academic Roles & Leadership -> Goal: Show Responsibilities -> Viz: Bulleted Lists within Cards -> Interaction: None -> Justification: Lists are the clearest way to present multiple responsibilities within a single role, making the information scannable and easy to digest. -> Library: HTML/CSS.
+        4. Skills & Interests -> Goal: Inform -> Viz: Styled Tags/Badges -> Interaction: None -> Justification: Tags are a modern, visually clean, and scannable way to present a list of skills and interests, making it easy for a recruiter or collaborator to identify relevant keywords. -> Library: HTML/CSS.
     -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
@@ -29,21 +28,21 @@
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc; /* bg-slate-50 */
         }
-        .chart-container {
+        .section-title {
             position: relative;
-            width: 100%;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
         }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 400px;
-            }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #3b82f6; /* blue-500 */
+            border-radius: 2px;
         }
-        .project-card-details {
+        .toggleable-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s ease-out;
@@ -58,10 +57,10 @@
                 Shubham Alte
             </div>
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#education" class="hover:text-blue-600 transition-colors">Education</a>
-                <a href="#projects" class="hover:text-blue-600 transition-colors">Projects</a>
-                <a href="#skills" class="hover:text-blue-600 transition-colors">Skills</a>
-                <a href="#experience" class="hover:text-blue-600 transition-colors">Experience</a>
+                <a href="#about" class="hover:text-blue-600 transition-colors">About & Education</a>
+                <a href="#experience" class="hover:text-blue-600 transition-colors">Experience & Leadership</a>
+                <a href="#research" class="hover:text-blue-600 transition-colors">Research & Creative</a>
+                <a href="#skills" class="hover:text-blue-600 transition-colors">Skills & Interests</a>
             </div>
             <a href="mailto:alteshubham123@gmail.com" class="hidden md:block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Contact</a>
             <div id="mobile-menu-button" class="md:hidden cursor-pointer">
@@ -69,10 +68,10 @@
             </div>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
-            <a href="#education" class="block py-2 px-6 hover:bg-slate-100">Education</a>
-            <a href="#projects" class="block py-2 px-6 hover:bg-slate-100">Projects</a>
-            <a href="#skills" class="block py-2 px-6 hover:bg-slate-100">Skills</a>
-            <a href="#experience" class="block py-2 px-6 hover:bg-slate-100">Experience</a>
+            <a href="#about" class="block py-2 px-6 hover:bg-slate-100">About & Education</a>
+            <a href="#experience" class="block py-2 px-6 hover:bg-slate-100">Experience & Leadership</a>
+            <a href="#research" class="block py-2 px-6 hover:bg-slate-100">Research & Creative</a>
+            <a href="#skills" class="block py-2 px-6 hover:bg-slate-100">Skills & Interests</a>
             <a href="mailto:alteshubham123@gmail.com" class="block py-2 px-6 hover:bg-slate-100">Contact</a>
         </div>
     </header>
@@ -81,71 +80,112 @@
 
         <section id="hero" class="text-center mb-24">
             <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Shubham Babasaheb Alte</h1>
-            <p class="text-xl md:text-2xl text-slate-600 mb-8">M.Sc. Mathematics Student at IIT Indore</p>
-            <div class="flex justify-center items-center space-x-6 text-slate-500">
-                <a href="mailto:alteshubham123@gmail.com" class="flex items-center space-x-2 hover:text-blue-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /></svg>
-                    <span>alteshubham123@gmail.com</span>
-                </a>
-                <a href="https://linkedin.com/in/shubham-alte-60256928a" target="_blank" class="flex items-center space-x-2 hover:text-blue-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.389 0-1.601 1.086-1.601 2.206v4.248H8.014V8.588h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.71zM5.337 7.433a1.062 1.062 0 01-1.06-1.061 1.061 1.061 0 112.123 0c0 .585-.478 1.06-1.063 1.06zM6.67 16.338H3.997V8.588H6.67v7.75zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clip-rule="evenodd" /></svg>
-                    <span>LinkedIn</span>
-                </a>
+            <p class="text-xl md:text-2xl text-slate-600 mb-8">Ph.D. Research Scholar | Department of Mathematics, IIT Indore</p>
+        </section>
+
+        <section id="about" class="mb-24 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center section-title">About & Education</h2>
+            <div class="max-w-4xl mx-auto text-lg text-slate-600 space-y-6">
+                <p>I am Shubham Babasaheb Alte, a Ph.D. research scholar in the Department of Mathematics at IIT Indore. My research, under the guidance of Dr. Mohd. Arshad, is focused on Information Theory, with a specific emphasis on information measures, entropy-based analysis, and blind image quality assessment.</p>
+                <p>My academic journey at IIT Indore began with an M.Sc. in Mathematics, which I later converted into my current Ph.D. program. My work involves both theoretical exploration of concepts like Rényi and Tsallis entropy and practical application in fields like cryptography.</p>
             </div>
         </section>
 
-        <section id="education" class="mb-24 scroll-mt-20">
-            <h2 class="text-3xl font-bold text-slate-900 mb-2 text-center">Education</h2>
-            <p class="text-lg text-slate-600 mb-12 text-center max-w-3xl mx-auto">
-                This section provides an overview of my academic journey, highlighting my qualifications from secondary school to my current Master's program. The chart below visualizes my academic performance over the years, offering a quick comparison of my scores at different educational levels.
-            </p>
-            <div class="chart-container">
-                <canvas id="educationChart"></canvas>
+        <section id="experience" class="mb-24 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center section-title">Experience & Leadership</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Academic & Professional Roles</h3>
+                    <ul class="space-y-4 text-slate-600">
+                        <li class="pl-4 border-l-2 border-blue-500">
+                            <span class="font-semibold text-slate-800">Teaching Assistant</span>
+                            <ul class="list-disc list-inside pl-4 mt-1 space-y-1 text-sm">
+                                <li>TA for "Design and Analysis of Algorithms."</li>
+                                <li>Created and reviewed lab problems and solution sheets in LaTeX.</li>
+                                <li>Helped design lab problems on FFT and Closest Pair of Points.</li>
+                            </ul>
+                        </li>
+                        <li class="pl-4 border-l-2 border-blue-500">
+                            <span class="font-semibold text-slate-800">Tutor</span>
+                            <ul class="list-disc list-inside pl-4 mt-1 space-y-1 text-sm">
+                                <li>Shared lab exams (R programming) and question papers with students.</li>
+                                <li>Organized and coordinated tasks during academic exams.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Student Representative Roles</h3>
+                    <ul class="space-y-4 text-slate-600">
+                        <li class="pl-4 border-l-2 border-blue-500">
+                            <span class="font-semibold text-slate-800">Teachers’ Day Celebration</span>
+                            <ul class="list-disc list-inside pl-4 mt-1 space-y-1 text-sm">
+                                <li>Represented all students to organize the event.</li>
+                                <li>Sent formal invitations to the Mathematics faculty and department.</li>
+                            </ul>
+                        </li>
+                        <li class="pl-4 border-l-2 border-blue-500">
+                            <span class="font-semibold text-slate-800">Maths Club Formation</span>
+                            <ul class="list-disc list-inside pl-4 mt-1 space-y-1 text-sm">
+                                <li>Actively involved in promoting departmental activities and clubs.</li>
+                                <li>Currently preparing a report for presentation to the Student Senate.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <section id="projects" class="mb-24 scroll-mt-20">
-            <h2 class="text-3xl font-bold text-slate-900 mb-2 text-center">Projects</h2>
-            <p class="text-lg text-slate-600 mb-12 text-center max-w-3xl mx-auto">
-                Here are some of the key projects I've worked on, spanning topics from statistical analysis to mechanical engineering and psychology. Each project demonstrates my ability to apply theoretical knowledge to solve practical problems. Click on any project card to learn more about its objectives and my role.
-            </p>
-            <div id="projects-grid" class="grid md:grid-cols-2 gap-8">
+        <section id="research" class="mb-24 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center section-title">Research & Creative Work</h2>
+            <div id="projects-grid" class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-lg shadow-md p-6 cursor-pointer transition-all hover:shadow-xl hover:-translate-y-1" onclick="toggleDetails(this)">
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Research & Publications</h3>
+                    <div class="toggleable-content">
+                        <ul class="list-disc list-inside mt-4 pl-4 text-slate-600 space-y-2">
+                            <li>Submitted paper on "Blind image quality assessment through anisotropy."</li>
+                            <li>Studied Rényi entropy for Pareto and Weibull distributions.</li>
+                            <li>Working on a paper about Tsallis entropy for a journal submission.</li>
+                            <li>Attending IISA Conference 2024 to present research on image quality.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 cursor-pointer transition-all hover:shadow-xl hover:-translate-y-1" onclick="toggleDetails(this)">
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Creative & Outreach Work</h3>
+                    <div class="toggleable-content">
+                        <ul class="list-disc list-inside mt-4 pl-4 text-slate-600 space-y-2">
+                            <li>Produced videos for International Day of Mathematics 2025 and National Mathematics Day.</li>
+                            <li>Wrote the script for the Integration Bee 2025 promo video.</li>
+                            <li>Planned merchandise and event branding for IDM 2025.</li>
+                            <li>Preparing a portfolio website for my Ph.D. profile.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="skills" class="mb-24 scroll-mt-20">
-            <h2 class="text-3xl font-bold text-slate-900 mb-2 text-center">Technical Skills & Key Courses</h2>
-            <p class="text-lg text-slate-600 mb-12 text-center max-w-3xl mx-auto">
-                My academic and project work is supported by a solid foundation in programming and mathematics. This section outlines my technical skills and the core courses I've undertaken, which form the bedrock of my analytical and computational capabilities.
-            </p>
-            <div class="grid md:grid-cols-2 gap-12">
+            <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center section-title">Skills & Interests</h2>
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
                 <div>
-                    <h3 class="text-2xl font-semibold text-slate-800 mb-6 text-center">Programming Skills</h3>
-                    <div id="programming-skills" class="flex flex-wrap justify-center gap-4">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-6 text-center">Technical Skills</h3>
+                    <div id="technical-skills" class="flex flex-wrap justify-center gap-4">
+                        <span class="bg-slate-200 text-slate-700 px-4 py-2 rounded-full text-sm font-medium">MATLAB</span>
+                        <span class="bg-slate-200 text-slate-700 px-4 py-2 rounded-full text-sm font-medium">LaTeX</span>
+                        <span class="bg-slate-200 text-slate-700 px-4 py-2 rounded-full text-sm font-medium">Information Theory</span>
+                        <span class="bg-slate-200 text-slate-700 px-4 py-2 rounded-full text-sm font-medium">Anisotropy Analysis</span>
+                        <span class="bg-slate-200 text-slate-700 px-4 py-2 rounded-full text-sm font-medium">Image Quality Assessment</span>
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-semibold text-slate-800 mb-6 text-center">Key Courses</h3>
-                    <div class="space-y-6">
-                        <div id="applied-math-courses">
-                            <h4 class="font-bold text-lg mb-2">Applied Mathematics</h4>
-                            <div class="flex flex-wrap justify-center gap-2"></div>
-                        </div>
-                        <div id="pure-math-courses">
-                            <h4 class="font-bold text-lg mb-2">Pure Mathematics</h4>
-                            <div class="flex flex-wrap justify-center gap-2"></div>
-                        </div>
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-6 text-center">Other Interests</h3>
+                    <div id="other-interests" class="flex flex-wrap justify-center gap-4">
+                        <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">Cryptography</span>
+                        <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">Entropy-based Analysis</span>
+                        <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">Event Organization</span>
+                        <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">Student Leadership</span>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section id="experience" class="scroll-mt-20">
-            <h2 class="text-3xl font-bold text-slate-900 mb-2 text-center">Experience & Achievements</h2>
-            <p class="text-lg text-slate-600 mb-12 text-center max-w-3xl mx-auto">
-                Beyond academics, I have actively participated in various leadership roles and have been recognized for my contributions. This timeline highlights my positions of responsibility and key achievements, reflecting my commitment to both personal growth and community involvement.
-            </p>
-            <div id="experience-timeline" class="relative border-l-2 border-blue-200 ml-6">
             </div>
         </section>
 
@@ -154,180 +194,11 @@
     <footer class="bg-slate-800 text-slate-300 mt-24">
         <div class="container mx-auto px-6 py-8 text-center">
             <p>&copy; 2024 Shubham Babasaheb Alte. All Rights Reserved.</p>
-            <p class="text-sm mt-2">Interactive resume created to showcase skills and experience.</p>
         </div>
     </footer>
 
     <script>
-        const educationData = {
-            labels: ['Secondary (2016)', 'Senior Secondary (2018)', 'B.Tech. (2022)', 'M.Sc. (Current)'],
-            scores: [95.40, 81.08, 7.11 * 10, 6.26 * 10],
-            rawScores: ['95.40%', '81.08%', '7.11 CGPA', '6.26 CGPA'],
-            institutes: ['State Board', 'State Board', 'College Of Engineering, Pune', 'Indian Institute of Technology Indore']
-        };
-
-        const projectsData = [
-            {
-                title: 'Regression Analysis',
-                period: 'Jul. 2023 - Current',
-                guide: 'Dr. Mohammad Arshad',
-                description: 'M.Sc. research project in Statistics, studying existing regression methods and Lq Estimation of Parameters in a regression model.'
-            },
-            {
-                title: 'The Energy Machine',
-                period: 'Aug. 2021 - May 2022',
-                guide: 'Dr. Mohan Khond',
-                description: 'B.tech project where we fabricated a model using a sewing machine apparatus to generate electricity, based on the principle of "conservation of energy."'
-            },
-            {
-                title: 'Optimizing Work Hours',
-                period: 'Jan 2021 - May 2021',
-                guide: 'Dr. Niyaj Shikalgar',
-                description: 'A mini-project on optimization, studying the optimization of work hours and understanding parameters for work-shift scheduling in industries.'
-            },
-            {
-                title: 'Meme Analysis for Negativity Reduction',
-                period: 'Jul. 2020 - Apr. 2021',
-                guide: 'Dr. Kshipra Moghe',
-                description: 'A group project for Industrial Psychology, conducting research on "An Analysis of Using Memes to reduce the feeling of Negativity in Youth."'
-            }
-        ];
-        
-        const skillsData = {
-            programming: ['R', 'C', 'Matlab', 'Mathematica', 'Data structures'],
-            appliedMath: ['Probability and Statistics', 'Experimental Design and Data Analysis', 'Operations Research', 'Computational Techniques', 'Discrete Mathematics', 'ODE and PDE'],
-            pureMath: ['Linear algebra', 'Analysis', 'Algebra', 'Topology']
-        };
-
-        const experienceData = [
-            { year: 'Feb. 2022 - Current', title: 'Placement Manager, TPC, IIT Indore', type: 'responsibility' },
-            { year: 'Feb. 2022 - Current', title: 'PG Student Counselling Coordinator, Counselling cell, IIT Indore', type: 'responsibility' },
-            { year: '2022', title: 'Qualified IIT-JAM 2022, Interview Call from IISC Bangalore', type: 'achievement' },
-            { year: '2018 - 2022', title: 'Co-Ordinator, Student Welfare Board, College Of Engineering Pune', type: 'responsibility' },
-            { year: '2018 - 2022', title: 'Co-Ordinator, Student Welfare Forum, College Of Engineering Pune', type: 'responsibility' },
-            { year: '2021-22', title: 'Best Outgoing Social Contributor, College Of Engineering Pune', type: 'achievement' },
-            { year: '2021', title: 'GATE 2021 Qualified (ME Stream)', type: 'achievement' },
-        ];
-
-
         document.addEventListener('DOMContentLoaded', () => {
-            const ctx = document.getElementById('educationChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: educationData.labels,
-                    datasets: [{
-                        label: 'Score (Normalized to %)',
-                        data: educationData.scores,
-                        backgroundColor: 'rgba(59, 130, 246, 0.5)',
-                        borderColor: 'rgba(59, 130, 246, 1)',
-                        borderWidth: 1,
-                        borderRadius: 5,
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100,
-                            title: {
-                                display: true,
-                                text: 'Percentage / CGPA * 10'
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    const index = context.dataIndex;
-                                    return `Score: ${educationData.rawScores[index]}`;
-                                },
-                                afterLabel: function(context) {
-                                    const index = context.dataIndex;
-                                    return `Institute: ${educationData.institutes[index]}`;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            const projectsGrid = document.getElementById('projects-grid');
-            projectsData.forEach((project, index) => {
-                const card = document.createElement('div');
-                card.className = 'bg-white rounded-lg shadow-md p-6 cursor-pointer transition-all hover:shadow-xl hover:-translate-y-1';
-                card.innerHTML = `
-                    <div class="flex justify-between items-start">
-                        <h3 class="text-xl font-bold text-slate-800 mb-2">${project.title}</h3>
-                        <span class="text-sm text-slate-500">${project.period}</span>
-                    </div>
-                    <div class="project-card-details">
-                        <p class="text-slate-600 mt-4">${project.description}</p>
-                        <p class="text-sm text-slate-500 mt-2"><strong>Guide:</strong> ${project.guide}</p>
-                    </div>
-                `;
-                projectsGrid.appendChild(card);
-                
-                card.addEventListener('click', () => {
-                    const details = card.querySelector('.project-card-details');
-                    if (details.style.maxHeight && details.style.maxHeight !== '0px') {
-                        details.style.maxHeight = '0px';
-                    } else {
-                        details.style.maxHeight = details.scrollHeight + 'px';
-                    }
-                });
-            });
-
-            const programmingSkillsContainer = document.getElementById('programming-skills');
-            skillsData.programming.forEach(skill => {
-                const tag = document.createElement('span');
-                tag.className = 'bg-slate-200 text-slate-700 px-4 py-2 rounded-full text-sm font-medium';
-                tag.textContent = skill;
-                programmingSkillsContainer.appendChild(tag);
-            });
-
-            const appliedMathContainer = document.querySelector('#applied-math-courses div');
-            skillsData.appliedMath.forEach(course => {
-                const tag = document.createElement('span');
-                tag.className = 'bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium';
-                tag.textContent = course;
-                appliedMathContainer.appendChild(tag);
-            });
-
-            const pureMathContainer = document.querySelector('#pure-math-courses div');
-            skillsData.pureMath.forEach(course => {
-                const tag = document.createElement('span');
-                tag.className = 'bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-medium';
-                tag.textContent = course;
-                pureMathContainer.appendChild(tag);
-            });
-            
-            const timelineContainer = document.getElementById('experience-timeline');
-            experienceData.forEach(item => {
-                const itemEl = document.createElement('div');
-                itemEl.className = 'mb-8 ml-8';
-                
-                const iconClass = item.type === 'achievement' ? 'bg-green-500' : 'bg-blue-500';
-                const iconSVG = item.type === 'achievement' ? 
-                    `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" clip-rule="evenodd" /></svg>` :
-                    `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.586A2.5 2.5 0 0115.5 15h-1a2.5 2.5 0 01-2.5-2.5V12h-2v.5A2.5 2.5 0 017.5 15h-1A2.5 2.5 0 014 12.5V8a2 2 0 012-2h2zm4-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v1h4z" clip-rule="evenodd" /></svg>`;
-
-                itemEl.innerHTML = `
-                    <div class="absolute -left-4 mt-1.5 w-8 h-8 ${iconClass} rounded-full flex items-center justify-center ring-8 ring-white">
-                        ${iconSVG}
-                    </div>
-                    <p class="text-sm text-slate-500">${item.year}</p>
-                    <h4 class="font-semibold text-slate-800">${item.title}</h4>
-                `;
-                timelineContainer.appendChild(itemEl);
-            });
-            
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenuButton.addEventListener('click', () => {
@@ -340,6 +211,16 @@
                 });
             });
         });
+
+        function toggleDetails(card) {
+            const content = card.querySelector('.toggleable-content');
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }
+        }
     </script>
 </body>
 </html>
+
